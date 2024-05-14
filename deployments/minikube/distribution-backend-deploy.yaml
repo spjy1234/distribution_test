@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: distribution-backend-deploy
+  labels:
+    app: distribution-backend-deploy
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: distribution-backend-deploy
+  template:
+    metadata:
+      labels:
+        app: distribution-backend-deploy
+    spec:
+      containers:
+        - name: distribution-backend-deploy
+          image: distribution-backend
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 3000
+          env:
+            - name: TZ
+              value: Asia/Tokyo
+            - name: DATABASE_HOST
+              value: distribution-db-svc
+            - name: DATABASE_PORT
+              value: "3306"
+            - name: DATABASE_USERNAME
+              value: root
+            - name: DATABASE_PASSWORD
+              value: password
+            - name: DATABASE
+              value: test

@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: distribution-db-deploy
+  labels:
+    app: distribution-db-deploy
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: distribution-db-deploy
+  template:
+    metadata:
+      labels:
+        app: distribution-db-deploy
+    spec:
+      containers:
+        - name: distribution-db-deploy
+          image: mysql:8.0
+          ports:
+            - containerPort: 3306
+          env:
+            - name: MYSQL_ROOT_PASSWORD
+              value: password
+            - name: MYSQL_DATABASE
+              value: test
+            - name: TZ
+              value: Asia/Tokyo

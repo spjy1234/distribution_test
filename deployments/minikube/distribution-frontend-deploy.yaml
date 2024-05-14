@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: distribution-frontend-deploy
+  labels:
+    app: distribution-frontend-deploy
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: distribution-frontend-deploy
+  template:
+    metadata:
+      labels:
+        app: distribution-frontend-deploy
+    spec:
+      containers:
+        - name: distribution-frontend-deploy
+          image: distribution-frontend
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 80
+          env:
+            - name: TZ
+              value: Asia/Tokyo
