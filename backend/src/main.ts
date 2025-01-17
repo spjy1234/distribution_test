@@ -11,5 +11,6 @@ async function bootstrap() {
 
   await app.listen(3000);
   console.log("pull request test");
+  console.log("test");
 }
 bootstrap();
